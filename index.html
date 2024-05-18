@@ -9,10 +9,16 @@
 <body>
     <div class="container">
         <div class="picker">
-            <select id="year">
-                <!-- Years will be populated by JavaScript -->
+            <select id="year-picker">
+                <!-- Options for years (2000-2023) -->
+                <script>
+                    for (let year = 2000; year <= new Date().getFullYear(); year++) {
+                        document.write('<option value="' + year + '">' + year + '</option>');
+                    }
+                </script>
             </select>
-            <select id="month">
+            <select id="month-picker">
+                <!-- Options for months (January-December) -->
                 <option value="01">January</option>
                 <option value="02">February</option>
                 <option value="03">March</option>
@@ -26,15 +32,12 @@
                 <option value="11">November</option>
                 <option value="12">December</option>
             </select>
-            <button id="goButton">Go</button>
+            <button id="go-button">Go</button>
         </div>
-        <div id="result">
-            <!-- Amazing event will be displayed here -->
-            <div id="eventText"></div>
-            <img id="eventImage" style="display:none;" alt="Event Image">
+        <div id="content" class="content">
+            <!-- Content will be displayed here -->
         </div>
     </div>
     <script src="script.js"></script>
 </body>
 </html>
-

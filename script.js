@@ -1,55 +1,24 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const yearSelect = document.getElementById('year');
-    const monthSelect = document.getElementById('month');
-    const goButton = document.getElementById('goButton');
-    const eventText = document.getElementById('eventText');
-    const eventImage = document.getElementById('eventImage');
+document.getElementById('go-button').addEventListener('click', function() {
+    const year = document.getElementById('year-picker').value;
+    const month = document.getElementById('month-picker').value;
 
-    // Populate the year select with options
-    const currentYear = new Date().getFullYear();
-    for (let year = currentYear; year >= 1900; year--) {
-        const option = document.createElement('option');
-        option.value = year;
-        option.textContent = year;
-        yearSelect.appendChild(option);
-    }
+    // Fetch or generate the content for the selected year and month
+    const content = getContent(year, month);
 
-    // Sample data for amazing events with images
-    const amazingEvents = {
-        '2019-07': {
-            text: 'England won the Cricket World Cup in July 2019!',
-            image: 'england.jpeg' // Local image
-        },
-        '2023-01': {
-            text: 'Amazing Event in January 2023',
-            image: 'event_jan_2023.jpg' // Placeholder for another local image
-        },
-        '2022-02': {
-            text: 'Spectacular Event in February 2022',
-            image: 'event_feb_2022.jpg' // Placeholder for another local image
-        },
-        '2021-03': {
-            text: 'Incredible Event in March 2021',
-            image: 'event_mar_2021.jpg' // Placeholder for another local image
-        },
-        // Add more events as needed
+    // Display the content
+    document.getElementById('content').innerText = content;
+});
+
+function getContent(year, month) {
+    // This is a sample content function
+    // You can replace this with actual data fetching or generation logic
+    const events = {
+        "2023-05": "Amazing Event in May 2023: Example Event Details",
+        "2022-12": "Amazing Event in December 2022: Example Event Details",
+        // Add more events here
     };
 
-    goButton.addEventListener('click', () => {
-        const selectedYear = yearSelect.value;
-        const selectedMonth = monthSelect.value;
-        const key = `${selectedYear}-${selectedMonth}`;
+    const key = `${year}-${month}`;
+    return events[key] || `No specific event found for ${month}/${year}.`;
+}
 
-        console.log(`Selected Year-Month Key: ${key}`); // Debugging line
-
-        const event = amazingEvents[key];
-        if (event) {
-            eventText.textContent = event.text;
-            eventImage.src = event.image;
-            eventImage.style.display = 'block';
-        } else {
-            eventText.textContent = 'No amazing event found for this date.';
-            eventImage.style.display = 'none';
-        }
-    });
-});
