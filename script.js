@@ -21,4 +21,3 @@ function getContent(year, month) {
     const key = `${year}-${month}`;
     return events[key] || `No specific event found for ${month}/${year}.`;
 }
-
